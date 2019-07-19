@@ -59,4 +59,16 @@ public class UserController {
         userService.delete(userid);
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
+
+    @PostMapping(value = "/todo/{todoid}", consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<?> addTodoToSelf(@Valid @RequestBody Todo todo, @PathVariable long todoid){
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        User user=userService.findUserByName(authentication.getName());
+        todo.setUser(user);
+        todo=todoService.save(todo);
+        user=userService.newTodo(user,todo);
+        userService.save(user);
+        return new ResponseEntity<>(null,HttpStatus.OK);
+    }
+
 }

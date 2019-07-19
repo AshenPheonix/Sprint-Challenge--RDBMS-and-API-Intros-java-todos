@@ -155,6 +155,11 @@ public class UserServiceImpl implements UserDetailsService, UserService
         {
             throw new EntityNotFoundException(authentication.getName());
         }
+    }
 
+    @Override
+    public User newTodo(User user, Todo todo) {
+        user.getTodos().add(todo);
+        return user;
     }
 }
