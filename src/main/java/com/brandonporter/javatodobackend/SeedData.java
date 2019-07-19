@@ -1,13 +1,27 @@
-// provided by Vivek Vishwanath
+package com.brandonporter.javatodobackend;
+
+import com.brandonporter.javatodobackend.models.Role;
+import com.brandonporter.javatodobackend.models.Todo;
+import com.brandonporter.javatodobackend.models.User;
+import com.brandonporter.javatodobackend.models.UserRoles;
+import com.brandonporter.javatodobackend.repositories.RoleRepository;
+import com.brandonporter.javatodobackend.repositories.TodoRepository;
+import com.brandonporter.javatodobackend.repositories.UserRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Transactional
 @Component
 public class SeedData implements CommandLineRunner {
     RoleRepository rolerepos;
     UserRepository userrepos;
-    ToDoRepository todorepos;
+    TodoRepository todorepos;
 
-    public SeedData(RoleRepository rolerepos, UserRepository userrepos, ToDoRepository todorepos) {
+    public SeedData(RoleRepository rolerepos, UserRepository userrepos, TodoRepository todorepos) {
         this.rolerepos = rolerepos;
         this.userrepos = userrepos;
         this.todorepos = todorepos;
